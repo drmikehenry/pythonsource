@@ -11,6 +11,15 @@ VersionTuple = T.Tuple[int, ...]
 
 local_root_path = Path("python")
 base_url = "https://www.python.org/ftp/python"
+min_versions = """
+2.7.15
+3.5.7
+3.6.8
+3.7.2
+3.8.0
+3.9.0
+3.10.0
+""".split()
 
 
 def parse_version_tuple(s: str) -> VersionTuple:
@@ -43,17 +52,6 @@ def version_less_equal(v1: str, v2: str) -> bool:
     vt1 = version_tuple_widen(parse_version_tuple(v1))
     vt2 = version_tuple_widen(parse_version_tuple(v2))
     return vt1 <= vt2
-
-
-min_versions = """
-2.7.15
-3.5.7
-3.6.8
-3.7.2
-3.8.0
-3.9.0
-3.10.0
-""".split()
 
 
 def want_version(version: str) -> bool:
