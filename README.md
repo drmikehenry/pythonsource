@@ -1,3 +1,9 @@
+---
+title: Pythonsource: Python tarballs for use with pyenv
+---
+
+# Introduction
+
 This is an archive of Python source tarballs from <https://www.python.org/ftp/>,
 primarily for use with `pyenv` (<https://github.com/pyenv/pyenv>) on a
 disconnected network.
@@ -5,6 +11,8 @@ disconnected network.
 The `python/` directory is a mirror of a subset of
 <https://www.python.org/ftp/python/>, including just the source tarball for each
 mirrored version of Python.
+
+# Setup and use
 
 Use in one of two ways:
 
@@ -47,3 +55,22 @@ pyenvactivate() {
 ```
 
 Use `pyenvactivate` before any `pyenv install x.y.z` operation.
+
+# (optional) Sparse checkouts
+
+`pythonsource` may be cloned sparsely to save disk space and cloning time.
+
+    git clone --sparse --depth 1 --filter=blob:none \
+      https://github.com/drmikehenry/pythonsource
+
+    cd pythonsource
+
+At this point, the `pythonsource` directory consumes little space.  The set of
+checked-out versions (initially empty) may be listed via:
+
+    git sparse-checkout list
+
+For each desired Python version, use `git sparse-checkout` to request checkout
+that version's directory.  For example, to checkout Python 3.9.9:
+
+    git sparse-checkout set /python/3.9.9
